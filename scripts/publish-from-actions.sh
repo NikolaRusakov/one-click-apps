@@ -44,7 +44,7 @@ echo "######### Setting env vars"
 echo "#############################################" 
 
 # https://github.com/NikolaRusakov/one-click-apps.git
-REMOTE_REPO="https://NikolaRusakov:${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
+REMOTE_REPO="git://${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
 REPONAME="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)"
 
 OWNER="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 1)" 
@@ -62,7 +62,8 @@ echo "#############################################"
 
 cp -r $BUILD_DIR $SOURCE_DIRECTORY_DEPLOY_GH/
 git clone --single-branch --branch=$REMOTE_BRANCH $REMOTE_REPO $CLONED_DIRECTORY_DEPLOY_GH
-git remote set-url origin "https://NikolaRusakov:${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
+git remote add origin git://${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
+# git remote set-url origin "git://${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
 
 sleep 1s
 echo "#############################################" 
@@ -90,4 +91,5 @@ git config user.email "r@users.noreply.github.com"
 echo `date` >> forcebuild.date
 git add -A 
 git commit -m 'Deploy to GitHub Pages' 
-git push $REMOTE_REPO $REMOTE_BRANCH:$REMOTE_BRANCH 
+git push
+rm -rf .git
