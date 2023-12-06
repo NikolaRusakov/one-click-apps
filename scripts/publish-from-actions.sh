@@ -44,7 +44,7 @@ echo "######### Setting env vars"
 echo "#############################################" 
 
 # https://github.com/NikolaRusakov/one-click-apps.git
-REMOTE_REPO="https://${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
+REMOTE_REPO="https://NikolaRusakov:${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
 REPONAME="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)"
 
 OWNER="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 1)" 
