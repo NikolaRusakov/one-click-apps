@@ -96,4 +96,4 @@ git commit -m 'Deploy to GitHub Pages'
 # git push $REMOTE_REPO $REMOTE_BRANCH:$REMOTE_BRANCH
 git push $REMOTE_REPO origin master
 
-# rm -rf .git
+rm -rf .git
