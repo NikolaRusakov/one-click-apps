@@ -1,9 +1,10 @@
 captainVersion: 4
 
 services:
+    # MySQL
     $$cap_appname-mysql:
         image: mysql:$$cap_mysql_tag
-	platform: linux/arm64
+        platform: linux/arm64
         volumes:
             - $$cap_appname-data:/var/lib/mysql
         environment:
@@ -14,11 +15,13 @@ services:
         caproverExtra:
             notExposeAsWebApp: 'true'
 
+    # Redis
     $$cap_appname-redis:
         image: redis:$$cap_redis_tag
         caproverExtra:
             notExposeAsWebApp: 'true'
 
+    # Directus
     $$cap_appname:
         depends_on:
             - $$cap_appname-mysql
@@ -42,7 +45,9 @@ services:
             CACHE_STORE: 'redis'
             CACHE_AUTO_PURGE: $$cap_redis_auto_purge
             CACHE_TTL: $$cap_redis_ttl
+            # Before Directus 10.4.0
             CACHE_REDIS: redis://srv-captain--$$cap_appname-redis:6379
+            # Since Directus 10.4.0
             REDIS: redis://srv-captain--$$cap_appname-redis:6379
             ADMIN_EMAIL: $$cap_admin_email
             ADMIN_PASSWORD: $$cap_admin_password
@@ -129,17 +134,3 @@ caproverOneClickApp:
           defaultValue: '1d'
           validRegex: /.{1,}/
           description: How long the data cache is persisted. (https://docs.directus.io/self-hosted/config-options.html#cache)
-
-    instructions:
-        end: >
-            Your service is available at http://$$cap_appname.$$cap_root_domain after a few minutes. You should enable HTTPS. If you won’t enable HTTPS adjust the PUBLIC_URL (environmental variable) in your App Configs.
-        start: >-
-            Directus is an open-source headless CMS and an Open Data Platform built to democratize the database. It provides a dynamic API and intuitive Admin Panel App. For more information and available options, see https://github.com/directus or the official documentation at https://docs.directus.io
-
-    displayName: 'Directus + MySQL + Redis'
-
-    isOfficial: true
-
-    description: Directus is an open-source headless CMS and an Open Data Platform built to democratize the database. It provides a dynamic API and intuitive Admin Panel App.
-
-    documentation: Taken from https://docs.directus.io/self-hosted/docker-guide.html.
