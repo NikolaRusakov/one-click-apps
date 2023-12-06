@@ -56,6 +56,19 @@ services:
             containerHttpPort: '8055'
 
 caproverOneClickApp:
+    instructions:
+        end: >
+            Your service is available at http://$$cap_appname.$$cap_root_domain after a few minutes. You should enable HTTPS. If you won’t enable HTTPS adjust the PUBLIC_URL (environmental variable) in your App Configs.
+        start: >-
+            Directus is an open-source headless CMS and an Open Data Platform built to democratize the database. It provides a dynamic API and intuitive Admin Panel App. For more information and available options, see https://github.com/directus or the official documentation at https://docs.directus.io
+
+    displayName: 'Directus + MySQL + Redis'
+
+    isOfficial: true
+
+    description: Directus is an open-source headless CMS and an Open Data Platform built to democratize the database. It provides a dynamic API and intuitive Admin Panel App.
+
+    documentation: Taken from https://docs.directus.io/self-hosted/docker-guide.html.
     variables:
         - label: Directus image tag
           id: $$cap_directus_tag
