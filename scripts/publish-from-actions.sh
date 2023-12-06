@@ -62,6 +62,8 @@ echo "#############################################"
 
 cp -r $BUILD_DIR $SOURCE_DIRECTORY_DEPLOY_GH/
 git clone --single-branch --branch=$REMOTE_BRANCH $REMOTE_REPO $CLONED_DIRECTORY_DEPLOY_GH
+git remote set-url origin "https://NikolaRusakov:${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
+
 sleep 1s
 echo "#############################################" 
 echo "######### Removing old files" 
