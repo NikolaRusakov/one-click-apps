@@ -51,7 +51,7 @@ GHIO="${OWNER}.github.io"
 if [[ "$REPONAME" == "$GHIO" ]]; then
   REMOTE_BRANCH="master"
 else
-  REMOTE_BRANCH="gh-pages"
+  REMOTE_BRANCH="master"
 fi 
 sleep 1s
 echo "#############################################" 
