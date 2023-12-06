@@ -83,9 +83,9 @@ To create your own repository:
 In order to add a third party repository:
 -   Login to your CapRover dashboard
 -   Go to **apps** and click on **One-Click Apps/Databases** and scrolldown to the bottom
--   Under **3rd party repositories:** copy  the URL, (for example: `https://Awes0meHub.github.io/caprover-one-click-apps`) and paste it in to the text box
+-   Under **3rd party repositories:** copy  the URL, (for example: `https://Awes0meHub.github.io/one-click-apps`) and paste it in to the text box
 -   Click the **_Connect New Repository_** button
 
 #### 3rd party repositorie
--   Awes0meHub: [Github](https://github.com/Awes0meHub/caprover-one-click-apps) repository: `https://Awes0meHub.github.io/caprover-one-click-apps`
--   Jordan-hall: [Github](https://github.com/Jordan-Hall/caprover-one-click-apps) repository: `https://oneclickapps.libertyware.io`
+-   Awes0meHub: [Github](https://github.com/Awes0meHub/one-click-apps) repository: `https://Awes0meHub.github.io/one-click-apps`
+-   Jordan-hall: [Github](https://github.com/Jordan-Hall/one-click-apps) repository: `https://oneclickapps.libertyware.io`
