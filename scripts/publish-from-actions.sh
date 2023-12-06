@@ -91,8 +91,9 @@ echo "#############################################"
 # git config user.email "r@users.noreply.github.com"
 echo `date` >> forcebuild.date
 git add -A 
-# git commit -m 'Deploy to GitHub Pages' 
-git push https://NikolaRusakov:${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git
+git commit -m 'Deploy to GitHub Pages' 
+# git push https://NikolaRusakov:${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git
 # git push $REMOTE_REPO $REMOTE_BRANCH:$REMOTE_BRANCH
+git push $REMOTE_REPO origin master
 
 # rm -rf .git
