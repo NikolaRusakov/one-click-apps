@@ -42,20 +42,18 @@ mkdir -p $CLONED_DIRECTORY_DEPLOY_GH
 echo "#############################################" 
 echo "######### Setting env vars" 
 echo "#############################################" 
-GITHUB_REPOSITORY=NikolaRusakov/one-click-apps
-# https://github.com/NikolaRusakov/one-click-apps.git
-REMOTE_REPO="https://${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
+
+REMOTE_REPO="https://${GITHUB_PERSONAL_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 REPONAME="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)"
-echo $REPONAME
-OWNER=NikolaRusakov
-# "$(echo $GITHUB_REPOSITORY| cut -d'/' -f 1)" 
+
+OWNER="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 1)" 
 GHIO="${OWNER}.github.io"
 if [[ "$REPONAME" == "$GHIO" ]]; then
   REMOTE_BRANCH="master"
 else
-  REMOTE_BRANCH="master"
+  REMOTE_BRANCH="gh-pages"
 fi 
-# sleep 1s
+sleep 1s
 echo "#############################################" 
 echo "######### CLONING REMOTE_BRANCH: $REMOTE_BRANCH" 
 echo "#############################################" 
@@ -63,22 +61,19 @@ echo "#############################################"
 
 cp -r $BUILD_DIR $SOURCE_DIRECTORY_DEPLOY_GH/
 git clone --single-branch --branch=$REMOTE_BRANCH $REMOTE_REPO $CLONED_DIRECTORY_DEPLOY_GH
-# git remote add origin "https://${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
-# git remote set-url origin "https://${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git"
-
-# sleep 1s
+sleep 1s
 echo "#############################################" 
 echo "######### Removing old files" 
 echo "#############################################" 
 cd $CLONED_DIRECTORY_DEPLOY_GH && git rm -rf . && git clean -fdx 
-# sleep 1s
+sleep 1s
 echo "#############################################" 
 echo "######### Copying files" 
 echo "#############################################" 
 cp -r $SOURCE_DIRECTORY_DEPLOY_GH/$BUILD_DIR $CLONED_DIRECTORY_DEPLOY_GH/$BUILD_DIR 
 mv $CLONED_DIRECTORY_DEPLOY_GH/.git $CLONED_DIRECTORY_DEPLOY_GH/$BUILD_DIR/ 
 cd $CLONED_DIRECTORY_DEPLOY_GH/$BUILD_DIR/ 
-# sleep 1s
+sleep 1s
 echo "#############################################" 
 echo "######### Content pre-commit ###" 
 echo "#############################################" 
@@ -86,14 +81,10 @@ ls -la
 echo "#############################################" 
 echo "######### Commit and push ###" 
 echo "#############################################" 
-# sleep 1s
-git config user.name "Nikola Rusakov"
-git config user.email "r@users.noreply.github.com"
+sleep 1s
+git config user.name "${GITHUB_ACTOR}"
+git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 echo `date` >> forcebuild.date
 git add -A 
 git commit -m 'Deploy to GitHub Pages' 
-# git push https://NikolaRusakov:${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git
-# git push $REMOTE_REPO $REMOTE_BRANCH:$REMOTE_BRANCH
-git push $REMOTE_REPO origin repo
-
-rm -rf .git
+git push $REMOTE_REPO $REMOTE_BRANCH:$REMOTE_BRANCH 
