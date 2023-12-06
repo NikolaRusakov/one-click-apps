@@ -87,13 +87,13 @@ echo "#############################################"
 echo "######### Commit and push ###" 
 echo "#############################################" 
 # sleep 1s
-git config user.name "r"
+git config user.name "Nikola Rusakov"
 git config user.email "r@users.noreply.github.com"
 echo `date` >> forcebuild.date
 git add -A 
 git commit -m 'Deploy to GitHub Pages' 
 # git push https://NikolaRusakov:${GITHUB_PERSONAL_TOKEN}@github.com/NikolaRusakov/one-click-apps.git
 # git push $REMOTE_REPO $REMOTE_BRANCH:$REMOTE_BRANCH
-git push $REMOTE_REPO origin master
+git push $REMOTE_REPO origin repo
 
 rm -rf .git
